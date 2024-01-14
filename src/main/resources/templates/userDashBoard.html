@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+	crossorigin="anonymous">
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+	crossorigin="anonymous"></script>
+
+
+<link th:href="@{/css/userDashboard.css}" rel="stylesheet">
+
+<title>User Dashboard</title>
+
+<!-- footer -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!--footer  -->
+<style>
+element.style {
+	
+}
+
+body, code, dd, div, dl, dt, fieldset, form, input, legend, li, ol, pre,
+	td, textarea, th, ul {
+	margin: 0;
+	padding: 0;
+}
+
+#test-body-mobile, *, .carousel__item, .cta-btn, a.cta-btn {
+	box-sizing: border-box;
+}
+
+user agent stylesheet
+div {
+	display: block;
+}
+
+body {
+	font-size: 100%;
+	line-height: normal;
+	font-family: "Lucida Grande", Verdana, Geneva, Helvetica, Arial,
+		sans-serif;
+}
+
+body, li, p {
+	color: #333;
+}
+
+.carousel-item img {
+	margin-top: 10% px;
+	left: 8;
+}
+
+.display-4 {
+	font-size: calc(1.475rem + 1vw);
+	font-weight: 300;
+	line-height: 1.2;
+	/*  */
+	/* font-family: "Playfair Display", Georgia, "Times New Roman",
+		serif/ rtl : Amiri, Georgia, "Times New Roman", serif/ */
+}
+
+h1 {
+	text-align: center;
+	display: block;
+	font-size: 2em;
+	margin-block-start: 0.67em;
+	margin-block-end: 0.67em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	font-weight: bold;
+	color: #FD190B;
+}
+
+.desc {
+	display: block;
+	line-height: 1;
+	color: black;
+}
+
+.blockquote {
+	text-align: center;
+	background-color: white;
+	opacity: 0.9;
+	color: #141615
+}
+
+.blockquote-footer {
+	color: white;
+	background-color: #A826F8;
+}
+
+.book {
+	color: #333;
+}
+
+/*footer   */
+footer {
+	background-color: #343a40;
+	color: white;
+	padding: 20px 0;
+	text-align: center;
+}
+
+.social-icons a {
+	color: white;
+	margin: 0 10px;
+	font-size: 24px;
+}
+
+.feedback-form {
+	margin-top: 20px;
+}
+
+/* card  */
+.card {
+	width: "20%";
+	height: "20%";
+}
+/* Change the color of links on hover */
+#topnav a:hover {
+	background-color: #ddd;
+	border-color: green;
+	border-radius: 10px;
+}
+
+/*  /* Align photo to the right side */
+.navbar-brand img {
+	width: 40px; /* Adjust the width of your photo */
+	height: 40px; /* Adjust the height of your photo */
+}
+
+/* Remove hover effect on navbar-brand */
+.navbar-brand:hover {
+	background-color: transparent !important;
+}
+
+/* .parent {
+	background-color: #A826F8;
+} */
+#email {
+	text-align: center;
+	text-transform: lowercase;
+}
+</style>
+</head>
+<body>
+	<div class="parent">
+		<nav class="navbar navbar-expand-lg bg-body-tertiary " id="topnav">
+			<div class="container-fluid">
+				<a class="navbar-brand me-3 " href="#"> <img
+					th:src="@{/image/blacklogo.gif}" width="70" height="70"></a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav  me-auto mb-2 mb-lg-0">
+						<li class="nav-item me-3 "><a class="nav-link active"
+							aria-current="page" href="#">Home</a></li>
+						<li class="nav-item me-3 "><a class="nav-link"
+							href="#aboutUs">About</a></li>
+						<li class="nav-item me-3 "><a class="nav-link"
+							href="#feedback">Feedback</a></li>
+
+						<li id="email" class="nav-item me-7"><a class="nav-link"
+							href="#" th:text="${user.email}"></a></li>
+
+					</ul>
+					<form class="d-flex" role="search">
+						<input class="form-control me-2" type="search"
+							placeholder="Search books" aria-label="Search">
+						<button class="btn btn-outline-success  me-5" type="submit">Search</button>
+					</form>
+
+					<div class="flex">
+						<a th:href="@{/userProfile}" class="navbar-brand"> <img
+							id="profile" th:src="@{/image/man.png}"></a> <a th:href="@{/}"
+							class=" btn btn-outline-dark "> Log out </a>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+
+		<div class="card text-bg-dark mt-2">
+			<img th:src="@{/image/pexels-marta-dzedyshko-2067569.jpg} "
+				class="card-img " alt="Image 1" height="500">
+			<div class="card-img-overlay">
+				<blockquote class="blockquote">
+
+					<h1 class="display-4 mt-0">welcome !</h1>
+					<h2></h2>
+
+					<h4 class="display-4 ">“The more that you read, the more
+						things you will know. The more that you learn, the more places
+						you’ll go.”</h4>
+					<footer class="blockquote-footer">
+						American author <cite title="Source Title">Dr. Seuss</cite>
+					</footer>
+				</blockquote>
+				<br> <br>
+			</div>
+		</div>
+		<br>
+		<div style="background-color: #82103a; padding-top: 5px">
+			<div class="container">
+				<div class="book ">
+					<h1 class="heading">
+						Trending <span>Books</span>
+					</h1>
+
+
+				</div>
+				<div id="mySlider" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner">
+						<!-- Slide 1 -->
+						<div class="carousel-item active">
+							<div class="row">
+								<!-- Card 1 -->
+								<div class="col-md-4">
+									<div class="card">
+										<a th:href="@{/books/The-Invisible-Man.pdf}" target="_blank"><img
+											th:src="@{/image/minvisible man.png }" class="card-img-top"
+											alt="Image 1"></a>
+										<div class="card-body">
+											<p class="card-text">The Invisible Man</p>
+										</div>
+									</div>
+								</div>
+								<!-- Card 2 -->
+								<div class="col-md-4">
+									<div class="card">
+										<a th:href="@{/books/The-Time-Machine.pdf}" target="_blank"><img
+											th:src="@{/image/the machine.png}" class="card-img-top"
+											alt="Image 1"></a>
+										<div class="card-body">
+											<p class="card-text">The Time Machine</p>
+										</div>
+									</div>
+								</div>
+								<!-- Card 3 -->
+								<div class="col-md-4">
+									<div class="card">
+										<a th:href="@{/books/Billionaire-Boss-Protector.pdf}"
+											target="_blank"><img
+											th:src="@{/image/billionaire boos protector.png}"
+											class="card-img-top" alt="Image 1"></a>
+										<div class="card-body">
+											<p class="card-text">Billionaire Boos Protector</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Slide 2 -->
+						<div class="carousel-item">
+							<div class="row">
+								<!-- Card 4 -->
+								<div class="col-md-4">
+									<div class="card">
+										<a th:href="@{/books/Hunted-by-the-Past.pdf}" target="_blank"><img
+											th:src="@{/image/hunted by past.png}" class="card-img-top"
+											alt="Image 1"></a>
+										<div class="card-body">
+											<p class="card-text">Hunted by Past</p>
+										</div>
+									</div>
+								</div>
+								<!-- Card 5 -->
+								<div class="col-md-4">
+									<div class="card">
+										<a th:href="@{/books/Meditations.pdf}" target="_blank"><img
+											th:src="@{/image/meditaion.png }" class="card-img-top"
+											alt="Image 1"></a>
+										<div class="card-body">
+											<p class="card-text">Meditation</p>
+										</div>
+									</div>
+								</div>
+								<!-- Card 6 -->
+								<div class="col-md-4">
+									<div class="card">
+										<a th:href="@{/books/The-Invisible-Man.pdf}" target="_blank"><img
+											th:src="@{/image/minvisible man.png }" class="card-img-top"
+											alt="Image 1"></a>
+										<div class="card-body">
+											<p class="card-text">The Invisible Man</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Add more slides as needed -->
+
+					</div>
+					<!-- Add navigation controls if desired -->
+					<a class="carousel-control-prev" href="#mySlider" role="button"
+						data-slide="prev"> <span class="carousel-control-prev-icon"
+						aria-hidden="true"></span> <span class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#mySlider" role="button"
+						data-slide="next"> <span class="carousel-control-next-icon"
+						aria-hidden="true"></span> <span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
+
+		</div>
+		<!-- <div class="container"> -->
+		<section class="blogs" id="blogs" style="background-color: #095725">
+
+			<h1 class="heading">
+				our popular <span>Books</span>
+			</h1>
+
+			<div class="box-container" id="books">
+
+				<div class="box" id="cart">
+					<div class="image">
+						<img
+							src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/02/attachment_80273810-e1488217742307.jpg?auto=format&q=60&fit=max&w=930">
+
+					</div>
+					<div class="content">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Non, dicta.</p>
+						<a href="#" class="button" style="background-color: #095725">read
+							more</a>
+					</div>
+				</div>
+
+				<div class="box">
+					<div class="image">
+						<img
+							src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/02/attachment_80004080-e1488217702832.jpg?auto=format&q=60&fit=max&w=930">
+					</div>
+					<div class="content">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Non, dicta.</p>
+						<a href="#" class="button" style="background-color: #095725">read
+							more</a>
+					</div>
+				</div>
+
+				<div class="box">
+					<div class="image">
+						<img
+							src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/02/attachment_80004080-e1488217702832.jpg?auto=format&q=60&fit=max&w=930">
+					</div>
+					<div class="content">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Non, dicta.</p>
+						<a href="#" class="button" style="background-color: #095725">read
+							more</a>
+					</div>
+				</div>
+				<div class="box">
+					<div class="image">
+						<img
+							src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/02/attachment_59886308-e1488217767193.jpg?auto=format&q=60&fit=max&w=930">
+
+					</div>
+					<div class="content">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Non, dicta.</p>
+						<a href="#" class="button" style="background-color: #095725">read
+							more</a>
+					</div>
+				</div>
+
+			</div>
+
+		</section>
+
+		<!-- 	</div> -->
+
+
+
+
+
+		<!-- blog Grid -->
+
+		<!-- <div class="container"> -->
+		<section class="blogs" id="blogs" style="background-color: #110c4d">
+
+			<h1 class="heading">
+				comics <span>Books</span>
+			</h1>
+
+			<div class="box-container" id="books">
+
+				<div class="box" id="cart">
+					<div class="image">
+						<img
+							src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/02/attachment_80273810-e1488217742307.jpg?auto=format&q=60&fit=max&w=930">
+
+					</div>
+					<div class="content">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Non, dicta.</p>
+						<a href="#" class="button" style="background-color: #110c4d">read
+							more</a>
+					</div>
+				</div>
+
+				<div class="box">
+					<div class="image">
+						<img
+							src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/02/attachment_80004080-e1488217702832.jpg?auto=format&q=60&fit=max&w=930">
+					</div>
+					<div class="content">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Non, dicta.</p>
+						<a href="#" class="button" style="background-color: #110c4d">read
+							more</a>
+					</div>
+				</div>
+
+				<div class="box">
+					<div class="image">
+						<img
+							src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/02/attachment_59886308-e1488217767193.jpg?auto=format&q=60&fit=max&w=930">
+
+					</div>
+					<div class="content">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Non, dicta.</p>
+						<a href="#" class="button" style="background-color: #110c4d">read
+							more</a>
+					</div>
+				</div>
+
+				<div class="box">
+					<div class="image">
+						<img
+							src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/02/attachment_59886308-e1488217767193.jpg?auto=format&q=60&fit=max&w=930">
+
+					</div>
+					<div class="content">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Non, dicta.</p>
+						<a href="#" class="button" style="background-color: #110c4d">read
+							more</a>
+					</div>
+				</div>
+
+			</div>
+
+		</section>
+		<!-- 
+		</div> -->
+
+
+		<!-- 	<div class="container"> -->
+		<section class="blogs" id="blogs" style="background-color: #851e0c">
+
+			<h1 class="heading">
+				Science-fiction <span>Books</span>
+			</h1>
+
+			<div class="box-container" id="books">
+
+				<div class="box" id="cart">
+					<div class="image">
+						<img
+							src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/02/attachment_80273810-e1488217742307.jpg?auto=format&q=60&fit=max&w=930">
+
+					</div>
+					<div class="content">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Non, dicta.</p>
+						<a href="#" class="button" style="background-color: #851e0c">read
+							more</a>
+					</div>
+				</div>
+
+				<div class="box">
+					<div class="image">
+						<img
+							src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/02/attachment_80004080-e1488217702832.jpg?auto=format&q=60&fit=max&w=930">
+					</div>
+					<div class="content">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Non, dicta.</p>
+						<a href="#" class="button" style="background-color: #851e0c">read
+							more</a>
+					</div>
+				</div>
+
+				<div class="box">
+					<div class="image">
+						<img
+							src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/02/attachment_59886308-e1488217767193.jpg?auto=format&q=60&fit=max&w=930">
+
+					</div>
+					<div class="content">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Non, dicta.</p>
+						<a href="#" class="button" style="background-color: #851e0c">read
+							more</a>
+					</div>
+				</div>
+
+				<div class="box">
+					<div class="image">
+						<img
+							src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/02/attachment_59886308-e1488217767193.jpg?auto=format&q=60&fit=max&w=930">
+
+					</div>
+					<div class="content">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Non, dicta.</p>
+						<a href="#" class="button" style="background-color: #851e0c">read
+							more</a>
+					</div>
+				</div>
+
+			</div>
+
+		</section>
+
+	</div>
+	<!-- blogs section ends -->
+
+
+	<!-- </div> -->
+
+
+	<!--  about section-->
+	<div class="about">
+		<section id="aboutUs" class="container">
+			<img src="/image/z.jpg" alt="user">
+			<div class="content">
+				<h2>About Us</h2>
+				<div class="content ">
+					<h3>Welcome to Our Free Online"OPEN LIBRARY"</h3>
+					<p>we are dedicated to fostering a love for literature and
+						providing a gateway to the world of knowledge. Our free online
+						library is a treasure trove of literary wonders, offering a
+						diverse collection of books, articles, and resources accessible to
+						everyone, without any cost.</p>
+
+					<p>What Sets Us Apart: Extensive Collection: Immerse yourself
+						in our vast collection covering a wide array of genres, from
+						classic literature to contemporary works. Whether you're a
+						student, a book enthusiast, or someone seeking information, we
+						have something for everyone. Free Access: Our commitment to
+						promoting literacy and education is reflected in our decision to
+						provide free access to our entire library. No subscriptions, no
+						fees – just open access to a world of stories and information.</p>
+					<a th:href="@{/userDashboard}" class="btn">learn more</a>
+				</div>
+
+
+			</div>
+		</section>
+	</div>
+	<!--  about section-->
+
+
+
+	<!--my slider end  -->
+	<!--  footer -->
+
+	<footer>
+		<div class="container">
+			<div class="social-icons">
+				<a href="#"><i class="fab fa-facebook"></i></a> <a href="#"><i
+					class="fab fa-twitter"></i></a> <a href="#"><i
+					class="fab fa-instagram"></i></a> <a href="#"><i
+					class="fab fa-linkedin"></i></a>
+			</div>
+			<div class="feedback-form" id="feedback">
+				<h5>Give us your feedback</h5>
+				<form>
+					<div class="form-group">
+						<label for="feedback">Your Feedback:</label>
+						<textarea class="form-control" id="feedback" rows="2"
+							placeholder="Enter Your Feedback Here......."></textarea>
+					</div>
+					<button type="submit" class="btn btn-light">Submit</button>
+				</form>
+			</div>
+		</div>
+	</footer>
+	<!--  footer -->
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

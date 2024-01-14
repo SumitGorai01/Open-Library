@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+<!-- Font Awesome 5 links-->
+<script src="https://kit.fontawesome.com/fddf5c0916.js"
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="" th:href="@{/css/adminDashboard.css}">
+
+<script>
+	$(document).ready(function() {
+		$('#sidebarCollapse').on('click', function() {
+			$('#sidebar').toggleClass('active');
+		});
+	});
+</script>
+
+<style>
+* {
+	font-family: Nunito, sans-serif;
+}
+
+.text-blk {
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	line-height: 25px;
+}
+
+.responsive-cell-block {
+	min-height: 75px;
+}
+
+.responsive-container-block {
+	min-height: 75px;
+	height: fit-content;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	justify-content: space-evenly;
+}
+
+.outer-container {
+	padding-top: 0px;
+	padding-right: 50px;
+	padding-bottom: 10px;
+	padding-left: 50px;
+	background-color: rgb(244, 252, 255);
+}
+
+.inner-container {
+	max-width: 1320px;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 50px;
+	margin-left: auto;
+}
+
+.section-head-text {
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	font-size: 35px;
+	font-weight: 700;
+	line-height: 48px;
+	color: rgb(0, 135, 177);
+	margin: 0 0 10px 0;
+}
+
+.section-subhead-text {
+	font-size: 25px;
+	color: rgb(153, 153, 153);
+	line-height: 35px;
+	max-width: 870px;
+	text-align: center;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 60px;
+	margin-left: 0px;
+}
+
+.img-wrapper {
+	width: 100%;
+}
+
+.team-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.social-media-links {
+	width: 125px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.name {
+	font-size: 24px;
+	font-weight: 700;
+	color: rgb(102, 102, 102);
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+
+	text-align: center;
+}
+
+.position {
+	font-size: 25px;
+	font-weight: 700;
+	color: rgb(0, 135, 177);
+	margin-top: 10px;
+	margin-right: 0px;
+	margin-bottom: 50px;
+	margin-left: 0px;
+}
+
+.team-img {
+	width: 100%;
+	height: 100%;
+}
+
+.team-card-container {
+	width: 280px;
+	margin: 0 0 40px 0;
+}
+
+@media ( max-width : 500px) {
+	.outer-container {
+		padding: 10px 20px 10px 20px;
+	}
+	.section-head-text {
+		text-align: center;
+	}
+}
+</style>
+
+<title>Open Library System</title>
+</head>
+<body>
+
+	<div class="wrapper">
+
+		<!-- Sidebar  -->
+		<nav id="sidebar">
+
+			<div class="sidebar-header">
+				<a href="/admin"><h3>Admin Dashboard</h3></a>
+			</div>
+
+			<ul class="list-unstyled components">
+
+				<li class="active"><a href="#homeSubmenu"
+					data-toggle="collapse" aria-expanded="false"
+					class="dropdown-toggle">Book</a>
+					<ul class="collapse list-unstyled" id="homeSubmenu">
+						<li><a href="/showNewBookForm">Add Book</a></li>
+						<li><a href="/book">View Books List</a></li>
+					</ul></li>
+				<li><a href="#pageSubmenu" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle">Author</a>
+					<ul class="collapse list-unstyled" id="pageSubmenu">
+						<li><a href="/showNewAuthorForm">Add Author</a></li>
+						<li><a href="/author">View Authors</a></li>
+					</ul></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="navbarDropdownMenuLink" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> Register User </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="/showAllUser">View Register
+							User</a>
+					</div></li>
+			</ul>
+		</nav>
+
+		<!-- Page Content  -->
+		<div id="content">
+			<nav
+				class="navbar navbar-expand-lg navbar-light bg-primary text-white">
+				<div class="container-fluid">
+					<button type="button" id="sidebarCollapse" class="btn btn-info">
+						<i class="fas fa-align-left"></i> <span>Dashboard</span>
+					</button>
+					<button class="btn btn-dark d-inline-block d-lg-none ml-auto"
+						type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<i class="fas fa-align-justify"></i>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<li class="nav-item">Admin : <span
+							th:text="${admin.username}"></span></li>
+						<ul class="nav navbar-nav ml-auto" id="drop">
+							<li class="nav-item dropdown text-white"><a
+								class="nav-link dropdown-toggle text-white" href="#"
+								id="navbarDropdownMenuLink" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"> <i
+									class="fa fa-address-book"></i> Admin Account
+							</a>
+								<div class="dropdown-menu "
+									aria-labelledby="navbarDropdownMenuLink">
+									<a class="dropdown-item " href="/admin_team_profile"><i
+										class="fa-solid fa-eye"></i> View Team</a>
+									<!-- <a
+										class="dropdown-item" href="/edit_account"><i
+										class="fa-solid fa-user-pen"></i> Edit Account</a> <a
+										class="dropdown-item" href="/change_password"><i
+										class="fa-solid fa-key"></i> Change Password</a> -->
+								</div></li>
+							<li class="nav-item "><a class="nav-link text-white"
+								href="/">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+
+
+			<div class="responsive-container-block outer-container">
+				<div class="responsive-container-block inner-container">
+					<p class="text-blk section-head-text">Meet Our Expert Team</p>
+					<p class="text-blk section-subhead-text">Dedicated individuals
+						with a passion for knowledge, ensuring top-notch guidance and
+						resources for our patrons.</p>
+					<div class="responsive-container-block">
+						<div class="responsive-cell-block  team-card-container">
+							<div class="team-card">
+								<div class="img-wrapper">
+									<img class="team-img"
+										src="/image/premPic1.jpg">
+								</div>
+								<p class="text-blk name">Prem Mohan Kushwaha</p>
+								<p class="text-blk position">Developer</p>
+								<div class="social-media-links">
+									<a href="http://www.github.com/" target="_blank"> <i class="fa-brands fa-github"></i>
+									</a> 
+									<a href="http://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i> 
+									</a> 
+									<a href="http://www.instagram.com/" target="_blank"> <i class="fa-brands fa-instagram"></i>
+									</a> 
+									
+								</div>
+							</div>
+						</div>
+							<div class="responsive-cell-block  team-card-container">
+							<div class="team-card">
+								<div class="img-wrapper">
+									<img class="team-img"
+										src="/image/sumitPic1.jpg">
+								</div>
+								<p class="text-blk name">Sumit Gorai</p>
+								<p class="text-blk position">Developer</p>
+								<div class="social-media-links">
+									<a href="http://www.github.com/" target="_blank"> <i class="fa-brands fa-github"></i>
+									</a> 
+									<a href="http://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i> 
+									</a> 
+									<a href="http://www.instagram.com/" target="_blank"> <i class="fa-brands fa-instagram"></i>
+									</a> 
+									
+								</div>
+							</div>
+						</div>
+						<div class="responsive-cell-block  team-card-container">
+							<div class="team-card">
+								<div class="img-wrapper">
+									<img class="team-img"
+										src="/image/rishiPic1.jpg">
+								</div>
+								<p class="text-blk name">Rishabh Singh</p>
+								<p class="text-blk position">Developer</p>
+								<div class="social-media-links">
+									<a href="http://www.github.com/" target="_blank"> <i class="fa-brands fa-github"></i>
+									</a> 
+									<a href="http://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i> 
+									</a> 
+									<a href="http://www.instagram.com/" target="_blank"> <i class="fa-brands fa-instagram"></i>
+									</a> 
+									
+								</div>
+							</div>
+						</div>
+					
+						<div class="responsive-cell-block  team-card-container">
+							<div class="team-card">
+								<div class="img-wrapper">
+									<img class="team-img"
+										src="/image/premPic1.jpg">
+								</div>
+								<p class="text-blk name">Prem Mohan Kushwaha</p>
+								<p class="text-blk position">Developer</p>
+								<div class="social-media-links">
+									<a href="http://www.github.com/" target="_blank"> <i class="fa-brands fa-github"></i>
+									</a> 
+									<a href="http://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin-in"></i> 
+									</a> 
+									<a href="http://www.instagram.com/" target="_blank"> <i class="fa-brands fa-instagram"></i>
+									</a> 
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+</body>
+</html>
+
+
