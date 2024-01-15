@@ -13,7 +13,6 @@
 body {
 	font-family: 'Poppins', sans-serif;
 	background: #fafafa;
-	
 }
 
 p {
@@ -56,6 +55,7 @@ a, a:hover, a:focus {
 }
 
 #sidebar {
+	height: 100%;
 	min-width: 250px;
 	max-width: 250px;
 	background: #011155;
@@ -65,12 +65,11 @@ a, a:hover, a:focus {
 
 #sidebar.active {
 	margin-left: -250px;
-	
-} 
+}
+
 #sidebar.active :hover {
-	
 	background-color: white;
-} 
+}
 
 #sidebar .sidebar-header {
 	padding: 20px;
@@ -97,12 +96,14 @@ a, a:hover, a:focus {
 	color: #7386D5;
 	background: #fff;
 }
-li{
+
+li {
 	text-decoration: none;
 }
+
 #sidebar ul li.active>a, a[aria-expanded="true"] {
 	color: #fff;
-	background:#011155;
+	background: #011155;
 }
 
 a[data-toggle="collapse"] {
@@ -132,7 +133,8 @@ ul ul a {
 	min-height: 100vh;
 	transition: all 0.3s;
 }
-#content nav{
+
+#content nav {
 	background-color: #011155;
 }
 
@@ -168,6 +170,7 @@ ul ul a {
 	height: 10vh;
 	width: 50vh;
 }
-.card-header{
+
+.card-header {
 	background-color: #1B3358;
 }

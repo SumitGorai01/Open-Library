@@ -28,7 +28,7 @@ public class AdminController {
 
 	// Compare the passwords
 		if (dbAdmin.getPassword().equals(password)) {
-			return "redirect:/admin";
+			return "redirect:admin";
 		} else {
 			return "adminLoginPage";
 		}

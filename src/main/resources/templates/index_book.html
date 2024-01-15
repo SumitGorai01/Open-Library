@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
@@ -20,14 +21,6 @@
 
 <link rel="stylesheet" href="" th:href="@{/css/adminDashboard.css}">
 
-<script>
-	$(document).ready(function() {
-		$('#sidebarCollapse').on('click', function() {
-			$('#sidebar').toggleClass('active');
-		});
-	});
-</script>
-
 <title>Open Library System</title>
 </head>
 <body>
@@ -35,77 +28,12 @@
 	<div class="wrapper">
 
 		<!-- Sidebar  -->
-		<nav id="sidebar">
-
-			<div class="sidebar-header">
-				<a href="/admin"><h3>Admin Dashboard</h3></a>
-			</div>
-
-			<ul class="list-unstyled components">
-
-				<li class="active"><a href="#homeSubmenu"
-					data-toggle="collapse" aria-expanded="false"
-					class="dropdown-toggle">Book</a>
-					<ul class="collapse list-unstyled" id="homeSubmenu">
-						<li><a href="/showNewBookForm">Add Book</a></li>
-						<li><a href="/book">View Books List</a></li>
-					</ul></li>
-				<li><a href="#pageSubmenu" data-toggle="collapse"
-					aria-expanded="false" class="dropdown-toggle">Author</a>
-					<ul class="collapse list-unstyled" id="pageSubmenu">
-						<li><a href="/showNewAuthorForm">Add Author</a></li>
-						<li><a href="/author">View Authors</a></li>
-					</ul></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#"
-					id="navbarDropdownMenuLink" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"> Register User </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<a class="dropdown-item" href="/showAllUser">View Register User</a> 
-					</div></li>
-			</ul>
-		</nav>
+		<div th:replace="fragments/sidebar"></div>
 
 		<!-- Page Content  -->
 		<div id="content">
-				<nav
-				class="navbar navbar-expand-lg navbar-light bg-primary text-white">
-				<div class="container-fluid">
-					<button type="button" id="sidebarCollapse" class="btn btn-info">
-						<i class="fas fa-align-left"></i> <span>Dashboard</span>
-					</button>
-					<button class="btn btn-dark d-inline-block d-lg-none ml-auto"
-						type="button" data-toggle="collapse"
-						data-target="#navbarSupportedContent"
-						aria-controls="navbarSupportedContent" aria-expanded="false"
-						aria-label="Toggle navigation">
-						<i class="fas fa-align-justify"></i>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<li class="nav-item">Admin : </li>
-						<ul class="nav navbar-nav ml-auto" id="drop">
-							<li class="nav-item dropdown text-white"><a
-								class="nav-link dropdown-toggle text-white" href="#"
-								id="navbarDropdownMenuLink" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false"> <i
-									class="fa fa-address-book"></i> Admin Account
-							</a>
-								<div class="dropdown-menu "
-									aria-labelledby="navbarDropdownMenuLink">
-									<a class="dropdown-item " href="/admin_team_profile"><i
-										class="fa-solid fa-eye"></i> View Team</a> <!-- <a
-										class="dropdown-item" href="/edit_account"><i
-										class="fa-solid fa-user-pen"></i> Edit Account</a> <a
-										class="dropdown-item" href="/change_password"><i
-										class="fa-solid fa-key"></i> Change Password</a> -->
-								</div></li>
-							<li class="nav-item "><a class="nav-link text-white"
-								href="/">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
+
+			<div th:replace="fragments/navbar"></div>
 
 			<div class="container my-2">
 				<h1>Book Records</h1>
@@ -131,9 +59,9 @@
 							<td th:text="${book.publishDate}"></td>
 							<td><a
 								th:href="@{/showFormForUpdate/{bookId}(bookId=${book.bookId})}"
-								class="btn btn-primary">Update</a> <a
+								class="btn btn-primary"> <i class="fa-solid fa-pen-to-square"></i> Update</a> <a
 								th:href="@{/deleteBook/{bookId}(bookId=${book.bookId})}"
-								class="btn btn-danger">Delete</a></td>
+								class="btn btn-danger">Delete <i class="fa-solid fa-trash-can"></i></a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -156,6 +84,8 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
+
+	<script type="text/javascript" th:src="@{/js/script.js}"></script>
 </body>
 </html>
 

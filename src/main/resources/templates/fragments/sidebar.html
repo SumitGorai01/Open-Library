@@ -1,0 +1,33 @@
+
+<div th:fragment="sidebar">
+
+	<nav id="sidebar">
+
+		<div class="sidebar-header">
+			<a href="/admin"><h3>Admin Dashboard</h3></a>
+		</div>
+
+		<ul class="list-unstyled components">
+
+			<li class="active"><a href="#homeSubmenu" data-toggle="collapse"
+				aria-expanded="false" class="dropdown-toggle"><i class="fa-solid fa-book"></i>    Book</a>
+				<ul class="collapse list-unstyled" id="homeSubmenu">
+					<li><a href="/showNewBookForm">Add Book  <i class="fa-solid fa-plus"></i></a></li>
+					<li><a href="/book">View Books List <i class="fa-solid fa-eye"></i></a></li>
+				</ul></li>
+			<li><a href="#pageSubmenu" data-toggle="collapse"
+				aria-expanded="false" class="dropdown-toggle"><i class="fa-solid fa-pen-to-square"></i>   Author</a>
+				<ul class="collapse list-unstyled" id="pageSubmenu">
+					<li><a href="/showNewAuthorForm">Add Author  <i class="fa-solid fa-plus"></i></a></li>
+					<li><a href="/author">View Authors <i class="fa-solid fa-eye"></i></a></li>
+				</ul></li>
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#"
+				id="navbarDropdownMenuLink" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-users"></i>    Register User </a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+					<a class="dropdown-item" href="/showAllUser">View Register User <i class="fa-solid fa-eye"></i></a>
+				</div></li>
+		</ul>
+	</nav>
+</div>
