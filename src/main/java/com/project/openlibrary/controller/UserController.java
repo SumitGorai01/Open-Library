@@ -1,6 +1,7 @@
 package com.project.openlibrary.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,12 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	
+	@Autowired
+    private BCryptPasswordEncoder passwordEncoder; // Inject BCryptPasswordEncoder
+
+ 
+	
 	@PostMapping("/save_user")
 	public String saveUser(@Valid @ModelAttribute("user") User user , BindingResult result) {
 		
@@ -30,6 +37,7 @@ public class UserController {
 			return "registerPage";
 		}		
 		
+		user.setPassword(passwordEncoder.encode(user.getPassword()));	
 		userService.saveUser(user);
 
 		return "userLoginPage";
@@ -47,19 +55,19 @@ public class UserController {
 
 		User dbUser = userService.findByEmail(email);
 
-		// Check if the user exists
-		if (dbUser == null) {
-			return "redirect:/user_login_page";
-		}
+		 // Check if the user exists
+	    if (dbUser == null) {
+	        return "redirect:/user_login_page";
+	    }
 
-		// Compare the passwords
-		if (dbUser.getPassword().equals(password)) {
-			System.out.println("Email and Password Matched.");
-			return "userDashBoard";
-		} else {
-			System.out.println("Email and Password Not Matched.");
-			return "userLoginPage";
-		}
+	    // Compare the passwords using BCryptPasswordEncoder
+	    if (passwordEncoder.matches(password, dbUser.getPassword())) {
+	        System.out.println("Email and Password Matched.");
+	        return "userDashBoard";
+	    } else {
+	        System.out.println("Email and Password Not Matched.");
+	        return "userLoginPage";
+	    }
 	}
 
 	// display list of user
